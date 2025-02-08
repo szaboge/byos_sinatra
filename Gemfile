@@ -10,6 +10,8 @@ gem 'rackup'
 gem 'forme'
 gem 'pry'
 gem 'dotenv', groups: [:development, :test]
+gem 'sinatra-cors'
+gem 'httparty'
 
 # browser automation
 gem 'ferrum', git: 'https://github.com/rubycdp/ferrum.git', ref: '7cc1a63351232b10f9ce191104efe6e9c72acca2'

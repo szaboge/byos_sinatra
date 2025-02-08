@@ -1,0 +1,16 @@
+plugins:
+  example:
+    folder: 'plugins/example'
+  stock:
+    folder: 'plugins/stock'
+schedules:
+  - from: '0:00'
+    to: '23:59'
+    scenes:
+      - from: '0'
+        to: '59'
+        plugins:
+          - plugin: stock
+            view: quadrant
+          
+  

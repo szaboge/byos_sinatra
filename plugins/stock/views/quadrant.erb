@@ -1,0 +1,31 @@
+<div class="view view--quadrant">
+  <div class="layout layout--col gap--space-between">
+      <% tickers_to_display = tickers.first(3) %>
+      <% tickers_to_display.each_with_index do |ticker, index| %>
+        <div class="grid">
+            <div class="item col--span-3">
+                <div class="meta"></div>
+                <div class="content">
+                    <span class="value value--xsmall value--tnums">
+                        <%= ticker[:symbol] %>
+                    </span>
+                    <span class="label">
+                        <%= ticker[:change] %>
+                    </span>
+                </div>
+            </div>
+            <div class="item col--span-6">
+                <div class="meta"></div>
+                <div class="content">
+                    <span class="value value--tnums">
+                        <%= ticker[:price] %> <%= ticker[:unit] %>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <% if index < tickers_to_display.size - 1 %>
+          <div class="w-full b-h-gray-5"></div>
+        <% end %>
+      <% end %>
+    </div>
+</div>

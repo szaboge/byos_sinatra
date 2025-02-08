@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_12_172428) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_07_170000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,5 +22,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_12_172428) do
     t.integer "refresh_interval", default: 900, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "http_caches", force: :cascade do |t|
+    t.string "url", null: false
+    t.text "response_body"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["url"], name: "index_http_caches_on_url", unique: true
   end
 end

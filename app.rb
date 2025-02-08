@@ -2,14 +2,19 @@ require 'dotenv/load'
 
 require 'sinatra'
 require 'sinatra/activerecord'
+require "sinatra/cors"
 require 'debug'
 
+require_relative 'plugins/renderer'
 require_relative 'config/initializers/tailwind_form'
 require_relative 'config/initializers/explicit_forme_plugin'
 
 # allows access on a local network at 192.168.x.x:4567; remove to scope to localhost:4567
 set :bind, '0.0.0.0'
 set :port, 4567
+set :allow_origin, "http://localhost:5500"
+set :allow_methods, "GET,HEAD,POST"
+set :allow_headers, "access-token,battery-voltage,fw-version,id,refresh-rate,rssi"
 
 # make model, service classes accessible
 %w[models services].each do |sub_dir|
@@ -105,10 +110,13 @@ get '/api/setup/' do
   end
 end
 
+renderer = Renderer.new
+
 # DISPLAY CONTENT
 get '/api/display/' do
   content_type :json
   @device = Device.find_by_api_key(env['HTTP_ACCESS_TOKEN'])
+  ScreenGenerator.new(renderer.render).process
   screen = ScreenFetcher.call
 
   if @device
