@@ -10,21 +10,15 @@ production:
   encoding: unicode
   database: db/trmnl_byos_sinatra.sqlite3
 <% else %>
+<% postgres_url = ENV['DATABASE_URL'] %>
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: trmnl_byos_sinatra
+  url: <%= postgres_url %>
   pool: 2
-  # username: your_username
-  # password: your_password
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: trmnl_byos_sinatra
+  url: <%= postgres_url %>
   pool: 2
-  # username: your_username
-  # password: your_password
+
 <% end %>
 test:
   adapter: sqlite3

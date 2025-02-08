@@ -29,6 +29,17 @@ docker build -t trmnl_byos -f Dockerfile .
 docker run --name trmnl -p 4567:4567 trmnl_byos
 ```
 
+**local**
+
+```
+docker build -t trmnl_byos -f Dockerfile.local .
+docker run -it -p 4567:4567 -v ./:/app/ --name trmnl trmnl_byos /bin/bash
+export $(grep -v '^#' .env | xargs)
+bundle # installs dependencies
+bundle exec rake db:setup # creates database
+bundle exec ruby app.rb # runs server, visit http://localhost:4567/devices/new
+```
+
 **debugging / building**
 
 first access the console: `rake console`
