@@ -12,7 +12,7 @@ require_relative 'config/initializers/explicit_forme_plugin'
 # allows access on a local network at 192.168.x.x:4567; remove to scope to localhost:4567
 set :bind, '0.0.0.0'
 set :port, 4567
-set :allow_origin, "http://localhost:5500"
+set :allow_origin, "http://localhost:5500/client https://dashboard-5e7e1.web.app"
 set :allow_methods, "GET,HEAD,POST"
 set :allow_headers, "access-token,battery-voltage,fw-version,id,refresh-rate,rssi"
 
